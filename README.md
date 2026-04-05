@@ -46,7 +46,3 @@ The model is a Deep Neural Network (DNN) built with Keras:
 * `/notebooks`: Python training and conversion scripts.
 * `/arduino_inference`: Final C++ code for real-time gesture recognition.
 
----
-**Course**: Low-power Embedded Systems  
-**Instructor**: Prof. Kasım Sinan Yıldırım
-
