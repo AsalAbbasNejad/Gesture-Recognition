@@ -49,3 +49,4 @@ The model is a Deep Neural Network (DNN) built with Keras:
 ---
 **Course**: Low-power Embedded Systems  
 **Instructor**: Prof. Kasım Sinan Yıldırım
+
