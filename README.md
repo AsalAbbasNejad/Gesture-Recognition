@@ -1,52 +1,49 @@
 # Gesture Recognition using TinyML on Arduino Nano 33 BLE Sense
 
-This repository contains an end-to-end TinyML project focused on real-time gesture classification using motion sensors. The project demonstrates the full workflow from raw data collection to on-device inference.
+This repository demonstrates a complete end-to-end TinyML pipeline for real-time gesture classification. Using an **Arduino Nano 33 BLE Sense**, the system identifies specific hand movements like **Punch** and **Flex** by processing motion data directly on the microcontroller.
 
-## 🚀 Overview
-The goal of this project is to recognize specific hand gestures (**Punch** and **Flex**) directly on the **Arduino Nano 33 BLE Sense** without relying on an external computer or cloud processing.
+## 🚀 Project Overview
+The goal is to implement "Intelligence at the Edge." By running Machine Learning models on-device, we eliminate the need for cloud communication, ensuring:
+* **Low Latency**: Immediate detection and response.
+* **Privacy**: Sensor data is processed locally and never uploaded.
+* **Efficiency**: Optimized for low-power embedded environments.
 
-## 🛠 Hardware & Tools
-* [cite_start]**Board**: Arduino Nano 33 BLE Sense Rev2 [cite: 1431]
-* [cite_start]**Sensors**: BMI270 (Accelerometer & Gyroscope) [cite: 1434]
-* [cite_start]**Frameworks**: TensorFlow, Keras, and TensorFlow Lite Micro (LiteRT) [cite: 1669, 1671]
-* [cite_start]**Platform**: Google Colab for model training [cite: 1712]
+## 🛠 Hardware & Technologies
+* **Board**: Arduino Nano 33 BLE Sense Rev2
+* **MCU**: Arm Cortex-M4 (64 MHz) with 1MB Flash and 256KB RAM
+* **IMU Sensor**: BMI270 (6-axis Accelerometer and Gyroscope)
+* **Software**: TensorFlow, Keras, and TensorFlow Lite Micro (LiteRT)
+* **Training Platform**: Google Colab (Jupyter Notebooks)
 
-## 📈 Project Workflow
+## 📈 Deployment Workflow
 
 ### 1. Data Collection
-We capture real-time sensor data from the accelerometer and gyroscope. 
-* [cite_start]Data is recorded at a fixed rate (104 Hz)[cite: 1581, 1594].
-* [cite_start]Gestures are stored as CSV files with labels: `punch.csv` and `flex.csv`[cite: 1703, 1707].
+Motion data is captured at 104 Hz. Two gestures were recorded and stored in CSV format:
+* **Punch**: A rapid forward strike.
+* **Flex**: A bicep-curling motion.
 
 ### 2. Preprocessing & Feature Extraction
-To ensure high accuracy on low-power hardware, we process the data before feeding it to the model:
-* [cite_start]**Normalization**: Scaling raw sensor values to a 0.0 - 1.0 range[cite: 1811].
-* [cite_start]**Statistical Features**: Calculating **RMS** (Root Mean Square) for signal strength[cite: 3582].
-* [cite_start]**Spectral Analysis**: Using **FFT** (Fast Fourier Transform) to analyze the frequency of movements[cite: 3666].
+To maintain high performance on a low-power chip, the raw data is transformed into meaningful features:
+* **Normalization**: Scaling accelerometer and gyroscope values to a 0.0 – 1.0 range.
+* **RMS Calculation**: Extracting Root Mean Square values to represent signal magnitude.
+* **FFT/PSD**: Performing Fast Fourier Transform to analyze the frequency components of each gesture.
 
-### 3. Model Training
-A Deep Neural Network (DNN) was designed and trained in Python using Keras:
-* [cite_start]**Input Layer**: Processes 714 normalized data points[cite: 2053].
-* [cite_start]**Architecture**: Two hidden Dense layers (50 and 15 neurons)[cite: 2062, 2063].
-* [cite_start]**Output Layer**: Softmax activation to predict the probability of each gesture[cite: 2064].
+### 3. Neural Network Architecture
+The model is a Deep Neural Network (DNN) built with Keras:
+* **Input**: 714 normalized data points (2-second window).
+* **Layers**: Two Dense (Fully Connected) hidden layers with 50 and 15 neurons respectively.
+* **Activation**: ReLU for hidden layers and Softmax for the final output.
 
-### 4. Deployment (TinyML)
-The trained model is optimized for the edge:
-* [cite_start]**Conversion**: The TensorFlow model is converted to a `.tflite` FlatBuffer format[cite: 2134, 2297].
-* [cite_start]**C Array Generation**: Using `xxd` to convert the model into a C constant byte array (`model.h`)[cite: 2154, 2203].
-* [cite_start]**Inference**: Running the model on the Arduino using the **LiteRT** library[cite: 2327, 2334].
+### 4. Edge Implementation
+* **Conversion**: The model is compressed into `.tflite` format.
+* **Serialization**: The `.tflite` file is converted into a C constant byte array (`model.h`).
+* **Inference**: The **LiteRT** library executes the model on the Arduino without dynamic memory allocation.
 
-## 📁 Structure
-* `/data`: Collected CSV sensor datasets.
-* `/notebook`: Training and conversion script (Jupyter Notebook).
-* `/arduino_code`: Final C++ sketch for on-device detection.
-
-## 🔧 Setup
-1. Upload the `Nano33_IMU` sketch to capture your own data.
-2. Train the model using the provided Google Colab notebook.
-3. Replace the `model.h` file in the Arduino project with your generated model.
-4. Upload and open the Serial Monitor to see real-time results.
+## 📁 Repository Structure
+* `/data`: Contains CSV files of recorded gestures.
+* `/notebooks`: Python training and conversion scripts.
+* `/arduino_inference`: Final C++ code for real-time gesture recognition.
 
 ---
-**Course Project**: Low-power Embedded Systems  
-[cite_start]**Instructor**: Prof. Kasım Sinan Yıldırım [cite: 4]
+**Course**: Low-power Embedded Systems  
+**Instructor**: Prof. Kasım Sinan Yıldırım
