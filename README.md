@@ -1,5 +1,7 @@
 # Gesture Recognition using TinyML on Arduino Nano 33 BLE Sense
 
+<img width="1014" height="554" alt="image" src="https://github.com/user-attachments/assets/80abf0d8-4f4b-4959-a708-e3538e0f560c" />
+
 This repository demonstrates a complete end-to-end TinyML pipeline for real-time gesture classification. Using an **Arduino Nano 33 BLE Sense**, the system identifies specific hand movements like **Punch** and **Flex** by processing motion data directly on the microcontroller.
 
 ## 🚀 Project Overview
