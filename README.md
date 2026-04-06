@@ -41,8 +41,3 @@ The model is a Deep Neural Network (DNN) built with Keras:
 * **Serialization**: The `.tflite` file is converted into a C constant byte array (`model.h`).
 * **Inference**: The **LiteRT** library executes the model on the Arduino without dynamic memory allocation.
 
-## 📁 Repository Structure
-* `/data`: Contains CSV files of recorded gestures.
-* `/notebooks`: Python training and conversion scripts.
-* `/arduino_inference`: Final C++ code for real-time gesture recognition.
-
