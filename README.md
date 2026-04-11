@@ -2,7 +2,6 @@
 
 This repository demonstrates a complete end-to-end TinyML pipeline for real-time gesture classification. Using an **Arduino Nano 33 BLE Sense**, the system identifies specific hand movements like **Punch** and **Flex** by processing motion data directly on the microcontroller.
 
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/ac74618b-7333-41d4-95fe-feeb5e618606" />
 
 ## 🚀 Project Overview
 The goal is to implement "Intelligence at the Edge." By running Machine Learning models on-device, we eliminate the need for cloud communication, ensuring:
