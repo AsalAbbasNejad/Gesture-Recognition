@@ -1,0 +1,10 @@
+              precision    recall  f1-score   support
+
+      circle       1.00      1.00      1.00        16
+  left_right       1.00      1.00      1.00        16
+        rest       1.00      1.00      1.00        16
+     up_down       1.00      1.00      1.00        16
+
+    accuracy                           1.00        64
+   macro avg       1.00      1.00      1.00        64
+weighted avg       1.00      1.00      1.00        64
